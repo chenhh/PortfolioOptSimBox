@@ -1,0 +1,1 @@
+'''Generalized AutoRegressive Conditional Heteroskedasticity, GARCH'''
