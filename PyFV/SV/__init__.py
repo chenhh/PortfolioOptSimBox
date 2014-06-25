@@ -1,1 +1,0 @@
-'''stochastic volatility model’''

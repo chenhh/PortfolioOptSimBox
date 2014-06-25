@@ -1,19 +1,28 @@
 # -*- coding: utf-8 -*-
 '''
-:author: Hung-Hsin Chen
+bootstrap methods
 
-Politis, Dimitris N., and Joseph P. Romano. "The stationary bootstrap." 
-Journal of the American Statistical Association 89.428 (1994): 1303-1313.
+.. codeauthor:: Hung-Hsin Chen <chenhh@par.cse.nsysu.edu.tw>
 '''
+
+
 import numpy as np
 
 
 def stationary_bootstrap(series, Q=0.5):
     '''
-    :series, numpy.array, if it is 2-d series, then the row index is model id 
-              and the column index is time period
-    :Q, float, mean block size
-    if Q = 0.5 then mean block size = 1/Q = 2
+    **Dimitris N. Politis and Joseph P. Romano, "The stationary bootstrap,"
+    Journal of the American Statistical Association, pp. 1303-1313, 1994.**
+
+    :param series: if it is a 2d series, then the row index is model id and 
+                   the  column index is time period.
+    :type series: numpy.array
+
+    :param Q: ir mean block size, if Q = 0.5, it means block size = 1/Q = 2.
+    :type Q: float
+
+    :return: random samples from series
+    :rtype: numpy.array
     '''
     # validation
     series = np.asarray(series)
