@@ -8,22 +8,7 @@ bootstrap methods
 
 import numpy as np
 
-
-def stationary_bootstrap(series, Q=0.5):
-    '''
-    **Dimitris N. Politis and Joseph P. Romano, "The stationary bootstrap,"
-    Journal of the American Statistical Association, pp. 1303-1313, 1994.**
-
-    :param series: if it is a 2d series, then the row index is model id and 
-                   the  column index is time period.
-    :type series: numpy.array
-
-    :param Q: ir mean block size, if Q = 0.5, it means block size = 1/Q = 2.
-    :type Q: float
-
-    :return: random samples from series
-    :rtype: numpy.array
-    '''
+def _series_validation(series):
     # validation
     series = np.asarray(series)
     if series.ndim == 1:
@@ -32,6 +17,41 @@ def stationary_bootstrap(series, Q=0.5):
         n_period = series.shape[1]
     else:
         raise ValueError('wrong dimension of series,dim:%s' % (series.ndim))
+    return series, n_period
+
+
+def bootstrap(series):
+    '''simple bootstrap, sample with replacement'''
+    # validation
+    series, n_period = _series_validation(series)
+    
+    colidx = np.random.randint(0, n_period, n_period)
+    
+    if series.ndim == 1:
+        samples = series[colidx]
+    elif series.ndim == 2:
+        samples = series[:, colidx]
+
+    return  samples
+
+
+def stationary_bootstrap(series, Q=0.5):
+    '''
+    **Dimitris N. Politis and Joseph P. Romano, "The stationary bootstrap,"
+    Journal of the American Statistical Association, pp. 1303-1313, 1994.**
+
+    :param series: if it is a 2d series, then the row index is model id and 
+                   the  column index is time period.
+    :type series: numpy.array or list
+
+    :param Q: ir mean block size, if Q = 0.5, it means block size = 1/Q = 2.
+    :type Q: float
+
+    :return: random samples from series
+    :rtype: numpy.array
+    '''
+    # validation
+    series, n_period = _series_validation(series)
 
     colidx = np.zeros(n_period, dtype=np.int)
     colidx[0] = np.random.randint(0, n_period)
