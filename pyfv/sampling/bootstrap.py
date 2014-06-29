@@ -21,7 +21,12 @@ def _series_validation(series):
 
 
 def bootstrap(series):
-    '''simple bootstrap, sample with replacement'''
+    '''simple bootstrap, sample with replacement
+    
+    :param series: if it is a 2d series, then the row index is model id and 
+                   the  column index is time period.
+    :type series: numpy.array or list
+    '''
     # validation
     series, n_period = _series_validation(series)
     

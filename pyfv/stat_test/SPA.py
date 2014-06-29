@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 '''
-P.R. Hansen, “A test for superior predictive ability, ” 
+P.R. Hansen, “A test for superior predictive ability,” 
 Journal of Business and Economic Statistics, Vol. 23, No. 4, pp. 365-380, 2005.
 
-Po-Hsuan Hsu , Yu-Chin Hsub, Chung-Ming Kuan, “Testing the predictive ability 
+Po-Hsuan Hsu, Yu-Chin Hsub, Chung-Ming Kuan, “Testing the predictive ability 
 of technical analysis using a new stepwise test without data snooping bias,” 
 Journal of Empirical Finance, Vol. 17, pp. 471-484, 2010.
 

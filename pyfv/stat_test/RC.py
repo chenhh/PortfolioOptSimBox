@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 '''
-Halbert White,  “A REALITY CHECK FOR DATA SNOOPING,” Econometrica, 
+Halbert White, “A REALITY CHECK FOR DATA SNOOPING,” Econometrica, 
 Vol. 68, No. 5, pp. 1097-1126, 2000.
 
-Romano, J. P. and M. Wolf,.  “Stepwise multiple testing as formalized data 
+J. P. Romano and M. Wolf, “Stepwise multiple testing as formalized data 
 snooping,” Econometrica, Vol . 73, pp. 1237–1282, 2005.
 
 .. moduleauthor:: Hung-Hsin Chen <chenhh@par.cse.nsysu.edu.tw>
@@ -21,13 +21,13 @@ class DifferenceObject(object):
         :param base_series: the benchmark series.
         :type base_series: numpy.array or list
         
-        :param self.n_period: number of period
+        :var self.n_period: number of period
         "type self.n_period: int
         
-        :param self.n_model: number of model to comparison
+        :var self.n_model: number of model to comparison
         :type self.n_model: int
         
-        :param self.model_series_mtx: model series mtx for comparison
+        :var self.model_series_mtx: model series mtx for comparison
         :type self.model_series_mtx: 2d numpy.array
         '''
         base_series = np.asarray(base_series)
