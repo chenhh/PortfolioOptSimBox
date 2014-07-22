@@ -9,6 +9,7 @@ Subpackages
     pyfv.garch
     pyfv.sv
     pyfv.sampling
+    pyfv.stat_test
 
 Module contents
 ---------------
