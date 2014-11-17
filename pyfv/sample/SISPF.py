@@ -2,7 +2,7 @@
 '''
 .. codeauthor:: Hung-Hsin Chen <chenhh@par.cse.nsysu.edu.tw>
 '''
-from gst._gst import object_set_control_rate
+from django.db.backends.oracle.base import _UninitializedOperatorsDescriptor
 
 __author__ = 'Hung-Hsin Chen'
 
@@ -55,16 +55,42 @@ def generate_data(params=None, n_pf=10000, n_observation=1000):
 
 def initialize_particle(params, n_pf):
     mu, phi, sigma2 = params
-    pfs = mu + np.sqrt(sigma2 / (1-phi)**2)*np.random.randn(n_pf)
-    return pfs
+    particles = mu + np.sqrt(sigma2 / (1-phi)**2)*np.random.randn(n_pf)
+    return particles
 
 
 def SISR_PF_SV(n_pf=10000):
-
-    data =generate_data(n_pf=n_pf, n_observation=1000)
+    #data generation
+    mu =0.5
+    phi = 0.975
+    sigma2 = 0.04
+    params = (mu, phi, sigma2)
+    data =generate_data(params, n_pf=n_pf, n_observation=1000)
     states = data['states']
     observations = data['observations']
     n_observation = len(observations)
+
+    #initialize particles
+    particles = initialize_particle(params, n_pf)
+    weights = np.ones(1, np.float)/n_pf
+    likelihood = 0.
+
+    for t in xrange(1, n_observation):
+        #draw particles (samples)
+
+        #estimate the next state (one-step ahead prediction)
+
+        #compute importance weight
+
+        #compute the log-likelihood
+
+        #normalize weight
+
+        #estimate current state (filtered)
+
+        #compute ESS
+
+        #resample and reset weight
 
 
 
