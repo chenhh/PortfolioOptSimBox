@@ -29,8 +29,9 @@ def CRRbinomial(S, K, T, rf, sigma, n):
     euroCall, euroPut = 0, 0
 
     for idx in xrange(0, n+1):
-        euroCall += spmisc.comb(n, idx)* (p**idx) * (1-p)**(n-idx)*np.max((S*(u**idx)*(d**(n-idx))-K, 0))
-        euroPut += spmisc.comb(n, idx)* (p**idx) * (1-p)**(n-idx)*np.max((K-S*(u**idx)*(d**(n-idx)), 0))
+        prob = spmisc.comb(n, idx)* (p**idx) * (1-p)**(n-idx)
+        euroCall += prob*max(S*(u**idx)*(d**(n-idx))-K, 0)
+        euroPut += prob*max(K-S*(u**idx)*(d**(n-idx)), 0)
 
     euroCall *= np.exp(-rf*T)
     euroPut *= np.exp(-rf*T)
@@ -43,24 +44,24 @@ def BlackScholes(S, K, T, rf, sigma):
     put-call parity
     C-P = S - K*e^(-rT)
 
-    :param S:
-    :param K:
-    :param T:
-    :param rf:
-    :param sigma:
-    :return:
+    :param S: underlying current price
+    :param K: option strke price
+    :param T: time to mature (year)
+    :param rf: risk-free rate
+    :param sigma: volatility
+    :return: european call and put current value
     '''
     sqrtT = np.sqrt(T)
     dc = K*np.exp(-rf*T)
-    d = (np.log(S/K)+T*(rf+0.5*sigma*sigma))/(sigma*sqrtT)
+    d = (np.log(S/K)+T*(rf+0.5*sigma**2))/(sigma*sqrtT)
     put = dc*spstats.norm.cdf(sigma*sqrtT-d)-S*spstats.norm.cdf(-d)
-    call = S - dc+put
+    call = S - dc + put
     return call, put
 
 
 def impliedVolatility(S, K, T, rf, optionValue, optionType='call'):
     '''
-    given Call or put, S, K, T, rf,
+    given Call or put, S, K, T, rf, and BS equation
     return: corresponding sigma
     '''
     if optionType == "call":
@@ -70,10 +71,10 @@ def impliedVolatility(S, K, T, rf, optionValue, optionType='call'):
     else:
         raise ValueError("unknown optionType: %s"%(optionType))
 
-    def f(x):
+    def lossFunc(x):
         return (optionValue - BlackScholes(S, K, T, rf, x)[val])**2
     x0 = 1.0
-    root = spopt.newton(f, x0)
+    root = spopt.newton(lossFunc, x0)
     return root
 
 print CRRbinomial(S=30, K=30, T=0.4167, rf=0.05, sigma=0.3, n=500)
