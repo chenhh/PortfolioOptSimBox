@@ -1,27 +1,29 @@
 # -*- coding: utf-8 -*-
-'''
-.. codeauthor:: Hung-Hsin Chen <chenhh@par.cse.nsysu.edu.tw>
-Black-Scholes-Merton formlua
-http://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model
-http://oneau.wordpress.com/2011/02/28/simple-statistics-with-scipy/
-'''
+"""
+Authors: Hung-Hsin Chen <chenhh@par.cse.nsysu.edu.tw>
+License: GPL v2
+"""
 import numpy as np
 import scipy.stats as spstats
 
-__author__ = 'Hung-Hsin Chen'
-
+_
 
 def Black_Scholes(S, K, Tmt, r, sigma):
-    '''
+    """
     The value of a call option for a non-dividend-paying underlying stock
 
-    :param S: spot price of the underlying asset
-    :param K: strike price
-    :param Tmt: time to maturity date (day)
-    :param r: risk-free rate (continuous rate)
-    :param sigma: (implied) volatility
-    :return:
-    '''
+    Parameters:
+    -----------------------------------------------
+    S: spot price of the underlying asset
+    K: strike price
+    Tmt: time to maturity date (day)
+    r: risk-free rate (continuous rate)
+    sigma: (implied) volatility
+
+    Return:
+    -------------------------------
+    return: current call and put option prices
+    """
     #transform day to year
     T = Tmt/365.
     d1 = (np.log(S/K)+(r+sigma*sigma*0.5)*T)/(sigma * np.sqrt(T))
