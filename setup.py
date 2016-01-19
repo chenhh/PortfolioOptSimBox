@@ -2,9 +2,9 @@
 
 from distutils.core import setup
 
-setup(name='pyfv',
+setup(name='post',
       version='0.1',
-      description='financial time series volatility model toolkit',
+      description='Portfolio Optimization Simulation Toolbox',
       author='Hung-Hsin Chen',
       author_email='chenhh@par.cse.nsysu.edu.tw',
       url='',
