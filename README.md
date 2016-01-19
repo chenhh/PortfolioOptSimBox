@@ -1,4 +1,4 @@
-PyFV
+POST
 ============
 
-financial time series volatility model
+Portfolio Optimization Simulation Toolbox
