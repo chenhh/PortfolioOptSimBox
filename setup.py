@@ -2,9 +2,9 @@
 
 from distutils.core import setup
 
-setup(name='post',
+setup(name='fintechbox',
       version='0.1',
-      description='Portfolio Optimization Simulation Toolbox',
+      description='finance technology toolbox',
       author='Hung-Hsin Chen',
       author_email='chenhh@par.cse.nsysu.edu.tw',
       url='',
