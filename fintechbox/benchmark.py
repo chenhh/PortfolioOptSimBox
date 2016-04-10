@@ -7,7 +7,7 @@ License: GPL v2
 import numpy as np
 import pandas as pd
 
-def sharpe(series):
+def Sharpe(series, unbiased=True):
     """
     Sharpe ratio
     note: the numpy std() function is the population estimator
@@ -15,17 +15,28 @@ def sharpe(series):
     Parameters:
     ---------------
     series: list or numpy.array, ROI series
+    unbiased: unbiased estimator of standard deviation or not
+
+    Return:
+    ---------------
+    Sharpe ratio of the given series.
     """
     s = np.asarray(series)
+    if unbiased:
+        # s.std(ddof=1) cannot get unbiased estimator.
+        var = s.var(ddof=1)
+        std = np.sqrt(var)
+    else:
+        std = s.std()
     try:
-        val = s.mean() / s.std()
+        val = s.mean() / std
     except FloatingPointError:
         # set 0 when standard deviation is zero
         val = 0
     return val
 
 
-def sortino_full(series, mar=0):
+def Sortino_full(series, mar=0):
     """
     Sortino ratio, using all periods of the series
 
@@ -45,7 +56,7 @@ def sortino_full(series, mar=0):
     return val, semi_std
 
 
-def sortino_partial(series, mar=0):
+def Sortino_partial(series, mar=0):
     """
     Sortino ratio, using only negative roi periods of the series
 
@@ -56,7 +67,7 @@ def sortino_partial(series, mar=0):
     """
     s = np.asarray(series)
     mean = s.mean()
-    n_neg_period = ((s - mar) < 0).sum()
+    n_neg_period = ((s - mar) < 0).astype(np.int).sum()
     try:
         semi_std = np.sqrt(((s * ((s - mar) < 0)) ** 2).sum() / n_neg_period)
         val = mean / semi_std
