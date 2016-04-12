@@ -29,11 +29,12 @@ except ImportError:
 
 from Cython.Build import cythonize
 import numpy as np
+import os
 
 extensions = [
     Extension(
               "benchmark",
-              ["benchmark.pyx",],
+              ["fintechbox/benchmark.pyx",],
               include_dirs = [np.get_include()],
     ),
 
