@@ -33,9 +33,14 @@ import os
 
 extensions = [
     Extension(
-              "benchmark",
-              ["fintechbox/benchmark.pyx",],
-              include_dirs = [np.get_include()],
+        "benchmark",
+        ["fintechbox/benchmark.pyx",],
+        include_dirs = [np.get_include()],
+    ),
+    Extension(
+        "account",
+        ["fintechbox/account.pyx", ],
+        include_dirs=[np.get_include()],
     ),
 
 ]
