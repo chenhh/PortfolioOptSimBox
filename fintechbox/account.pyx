@@ -5,12 +5,24 @@ License: GPL v2
 """
 
 cdef class Stock:
+    """
+    The class represents the current holding stock in the portfolio
+
+    Attributes:
+    -----------
+    symbol: string
+        the symbol name of the stock
+    ave_price: float
+        the current market price of the stock
+    shares: int
+        the current holding shares of the stock
+
+
+    """
+    cdef readonly char* symbol
     cdef float avg_price
     cdef int shares
-    cdef readonly char* symbol
 
-    # log format: (trans_date, symbol, price, share)
-    trans_log = []
 
     def __cinit__(self, char* symbol):
         """
