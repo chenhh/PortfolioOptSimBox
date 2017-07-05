@@ -1,14 +1,14 @@
 *.py[cod]
-
+*.c
 # C extensions
 *.so
-*.c
 
 # Packages
 *.egg
 *.egg-info
 dist
 build
+.cache
 eggs
 parts
 bin
