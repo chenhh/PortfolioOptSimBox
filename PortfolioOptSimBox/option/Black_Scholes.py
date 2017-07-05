@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Authors: Hung-Hsin Chen <chenhh@par.cse.nsysu.edu.tw>
-License: GPL v2
+Author: Hung-Hsin Chen <chenhh@par.cse.nsysu.edu.tw>
 """
 import numpy as np
 import scipy.stats as spstats
 
-_
 
 def Black_Scholes(S, K, Tmt, r, sigma):
     """
@@ -34,8 +32,6 @@ def Black_Scholes(S, K, Tmt, r, sigma):
     call = cdf_d1 * S - cdf_d2*discount_factor
     put = discount_factor-S + call
 
-    print "(S, K, T, r, sigma)=(%s, %s, %s, %s, %s)"%(S, K, T, r, sigma)
-    print "call: %s, put: %s"%(call, put)
     return (call, put)
 
 

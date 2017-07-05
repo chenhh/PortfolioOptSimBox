@@ -46,8 +46,8 @@ extensions = [
 ]
 
 setup(
-    name = 'fintechbox',
-    description='finance technology toolbox',
+    name = 'PortfolioOptSimBox',
+    description='portfolio optimization simulation toolbox',
     author = 'Hung-Hsin Chen',
     author_email = 'chenhh@par.cse.nsysu.edu.tw',
     ext_modules = cythonize(extensions),
