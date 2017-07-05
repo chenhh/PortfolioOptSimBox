@@ -1,4 +1,4 @@
-fintechbox
-============
+PortfolioOptSimBox
+==================
 
-finance technology toolbox
+Portfolio optimization simulation toolbox
